@@ -8,7 +8,7 @@ from django.db.models import (ForeignKey,
                               DecimalField,)
 
 
-class Sneakers(Model):
+class SneakersPair(Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     src = CharField(max_length=255)
     title = CharField(max_length=255)
@@ -17,5 +17,5 @@ class Sneakers(Model):
 
 class CartItem(Model):
     id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    parent = ForeignKey(Sneakers, on_delete=CASCADE, related_name='sneakers')
+    parent = ForeignKey(SneakersPair, on_delete=CASCADE, related_name='sneakers')
 
