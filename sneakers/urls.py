@@ -1,10 +1,13 @@
 from django.urls import path, include
-from sneakers.views import (SneakersListAPIView,
-                            SneakersDetailAPIView,)
+from rest_framework import routers
 
+from sneakers.views import SneakersViewSet
+
+
+router = routers.SimpleRouter()
+router.register(r's', SneakersViewSet)
 
 urlpatterns = [
-    path('', SneakersListAPIView.as_view(), name='sneakers-main'),
-    path('<str:pk>/', SneakersDetailAPIView.as_view(), name='sneakers-detail')
+    path('', include(router.urls))
 ]
 
