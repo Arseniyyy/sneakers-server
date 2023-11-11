@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    image: arsenydeveloper/sneakers-server-dev:latest
+    restart: always
+    command: sh -c "make migrate && make rungunicorn"
+    ports:
+      - 8000:8000
+    volumes:
+      - static-volume:/app/django-movie/static
+      - media-volume:/app/django-movie/media
+    env_file:
+      - .env
+
+volumes:
+  static-volume:
+  media-volume:
