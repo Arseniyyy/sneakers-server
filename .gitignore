@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
 commit-message.md
+.env.prod.db
 
 ### Django ###
 *.log

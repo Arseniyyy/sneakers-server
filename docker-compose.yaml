@@ -2,7 +2,10 @@ version: '3'
 
 services:
   web:
-    image: arsenydeveloper/sneakers-server-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: arsenydeveloper/sneakers-server-dev:latest
     restart: always
     command: sh -c "make migrate && make rungunicorn"
     ports:
@@ -12,7 +15,16 @@ services:
       - media-volume:/app/django-movie/media
     env_file:
       - .env
+    depends_on:
+      - db
+  db:
+    image: postgres:15.2-alpine
+    volumes:
+      - dmp-postgres-data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
 
 volumes:
+  dmp-postgres-data:
   static-volume:
   media-volume:
